@@ -43,22 +43,22 @@ ball.dy = 0.1 #ball move by 2px on y-axis
 # Function
 def paddle_a_up():
     y = paddle_a.ycor() #know the current y coordinate
-    y += 20 #adds 20px to y coor
+    y += 25 #adds 20px to y coor
     paddle_a.sety(y)
     
 def paddle_a_down():
     y = paddle_a.ycor() #know the current y coordinate
-    y -= 20 #adds 20px to y coor
+    y -= 25 #adds 20px to y coor
     paddle_a.sety(y)
     
 def paddle_b_up():
     y = paddle_b.ycor() #know the current y coordinate
-    y += 20 #adds 20px to y coor
+    y += 25 #adds 20px to y coor
     paddle_b.sety(y)
     
 def paddle_b_down():
     y = paddle_b.ycor() #know the current y coordinate
-    y -= 20 #adds 20px to y coor
+    y -= 25 #adds 20px to y coor
     paddle_b.sety(y)
     
 # Keyboard binding
@@ -97,3 +97,16 @@ while True:
     if ball.xcor() < -390: #windows is x=800/2=400 and ball is 20/2=10
         ball.goto(0, 0) #put the ball back to center
         ball.dx *= -1 #reverse the ball's direction
+        
+    # Paddle and ball collisions detection
+    # right paddle detection
+    # if the ball's and paddles' edges are touching AND is the ball between the top and bottom of the paddle(size=100/2=50 but minus ball size=20/2=10)
+    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() - 40): 
+        ball.setx(340) #set it back to 340
+        ball.dx *= -1 #reverse and bounce back the ball
+        
+    # left paddle detection
+    # if the ball's and paddles' edges are touching AND is the ball between the top and bottom of the paddle(size=100/2=50 but minus ball size=20/2=10)
+    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() - 40): 
+        ball.setx(-340) #set it back to -340
+        ball.dx *= -1 #reverse and bounce back the ball
