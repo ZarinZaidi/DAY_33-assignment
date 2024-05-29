@@ -35,6 +35,10 @@ ball.shape('square') # by default shape is 25px x 25px
 ball.color('white')
 ball.penup()
 ball.goto(0, 0) #ball a starts at coordinate (x, y)
+# separate the ball movements into parts (x move & y move)
+ball.dx = 0.1 #ball move by 2px on x-axis
+ball.dy = 0.1 #ball move by 2px on y-axis
+
 
 # Function
 def paddle_a_up():
@@ -68,3 +72,28 @@ wn.onkeypress(paddle_b_down, 'Down') #call the fx when user press 'w'
 # Main game loop
 while True:
     wn.update()
+    
+    # Move the ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+    
+    # Border checking
+    # top border
+    if ball.ycor() > 290: #windows is y=300 and ball is 20/2=10
+        ball.sety(290) #set it back to 290
+        ball.dy *= -1 #to reverse the ball's direction
+        
+    # bottom border
+    if ball.ycor() < -290: #windows is y=600/2=300 and ball is 20/2=10
+        ball.sety(-290) #set it back to 290
+        ball.dy *= -1 #to reverse the ball's direction
+        
+    # right border
+    if ball.xcor() > 390: #windows is x=800/2=400 and ball is 20/2=10
+        ball.goto(0, 0) #put the ball back to center
+        ball.dx *= -1 #reverse the ball's direction
+        
+    # left border
+    if ball.xcor() < -390: #windows is x=800/2=400 and ball is 20/2=10
+        ball.goto(0, 0) #put the ball back to center
+        ball.dx *= -1 #reverse the ball's direction
