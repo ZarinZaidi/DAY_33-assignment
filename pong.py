@@ -36,6 +36,35 @@ ball.color('white')
 ball.penup()
 ball.goto(0, 0) #ball a starts at coordinate (x, y)
 
+# Function
+def paddle_a_up():
+    y = paddle_a.ycor() #know the current y coordinate
+    y += 20 #adds 20px to y coor
+    paddle_a.sety(y)
+    
+def paddle_a_down():
+    y = paddle_a.ycor() #know the current y coordinate
+    y -= 20 #adds 20px to y coor
+    paddle_a.sety(y)
+    
+def paddle_b_up():
+    y = paddle_b.ycor() #know the current y coordinate
+    y += 20 #adds 20px to y coor
+    paddle_b.sety(y)
+    
+def paddle_b_down():
+    y = paddle_b.ycor() #know the current y coordinate
+    y -= 20 #adds 20px to y coor
+    paddle_b.sety(y)
+    
+# Keyboard binding
+wn.listen() #listen for keyboard input
+wn.onkeypress(paddle_a_up, 'w') #call the fx when user press 'w'
+wn.onkeypress(paddle_a_down, 's') #call the fx when user press 'w'
+wn.onkeypress(paddle_b_up, 'Up') #call the fx when user press 'w'
+wn.onkeypress(paddle_b_down, 'Down') #call the fx when user press 'w'
+
+
 # Main game loop
 while True:
     wn.update()
