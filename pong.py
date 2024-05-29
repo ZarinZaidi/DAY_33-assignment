@@ -29,6 +29,12 @@ paddle_b.penup()
 paddle_b.goto(+350, 0) #paddle a starts at coordinate (x, y)
 
 # Ball
+ball = turtle.Turtle() #turtle object. Class name: Turtle
+ball.speed(0) #speed of animation. sets the speed to the maxi possible speed
+ball.shape('square') # by default shape is 25px x 25px
+ball.color('white')
+ball.penup()
+ball.goto(0, 0) #ball a starts at coordinate (x, y)
 
 # Main game loop
 while True:
