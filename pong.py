@@ -9,6 +9,9 @@ wn.setup(width=800, height=600)
 wn.tracer(0) 
 # tracer stops the window from updating. so we hv to manually update it.speed up our game a bit.
 
+# Score
+score_a = 0
+score_b = 0
 
 # Paddle A
 paddle_a = turtle.Turtle() #turtle object. Class name: Turtle
@@ -38,6 +41,15 @@ ball.goto(0, 0) #ball a starts at coordinate (x, y)
 # separate the ball movements into parts (x move & y move)
 ball.dx = 0.1 #ball move by 2px on x-axis
 ball.dy = 0.1 #ball move by 2px on y-axis
+
+# Pen
+pen = turtle.Turtle() #turtle object. Class name: Turtle
+pen.speed(0) #speed of animation. sets the speed to the maxi possible speed
+pen.color('white')
+pen.penup() #don/t draw the lines when the pen moves
+pen.hideturtle() #hide the object. we just want to see the text
+pen.goto(0, 275) #within windows  size
+pen.write('Player A: 0  Player B: 0', align='center', font=('Courier', 15, 'normal')) #Default score on the screen
 
 
 # Function
@@ -92,11 +104,19 @@ while True:
     if ball.xcor() > 390: #windows is x=800/2=400 and ball is 20/2=10
         ball.goto(0, 0) #put the ball back to center
         ball.dx *= -1 #reverse the ball's direction
+        score_a +=1 #player A(left) got 1 score if the ball goes off the right side
+        pen.clear() #clear the pen first so the score won't overlap
+        pen.write('Player A: {}  Player B: {}'.format(score_a, score_b), align='center', font=('Courier', 15, 'normal')) #Display updated score
+        
         
     # left border
     if ball.xcor() < -390: #windows is x=800/2=400 and ball is 20/2=10
         ball.goto(0, 0) #put the ball back to center
         ball.dx *= -1 #reverse the ball's direction
+        score_b +=1 #player B(right) got 1 score if the ball goes off the left side
+        pen.clear() #clear the pen first so the score won't overlap
+        pen.write('Player A: {}  Player B: {}'.format(score_a, score_b), align='center', font=('Courier', 15, 'normal')) #Display updated score
+        
         
     # Paddle and ball collisions detection
     # right paddle detection
