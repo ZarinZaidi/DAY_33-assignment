@@ -1,0 +1,13 @@
+# Virtual environment
+env/
+
+# Python specific
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Other common exclusions
+.DS_Store
+*.log
+*.sqlite3
+*.db
